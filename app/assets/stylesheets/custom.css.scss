@@ -70,25 +70,31 @@ p{
 
 /* footer */
 footer {
-margin-top: 95px;
-padding-top: 5px;
-border-top: 1px solid #eaeaea;
-color: $gray-light;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  // margin-top: 95px;
+  // padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: $gray-light;
    a {
     color: #555;
     &:hover {
        	  color: #222;
-	  }
-   }
-   small {
-    float: left;
-   }
-   ul {
-    float: right;
-    list-style: none;
-    li {
-     float: left;
-     margin-left: 12px;
-     }
     }
+   }
+  small {
+   float: left;
+   margin-left: 12px;
+  }
+  ul {
+  float: right;
+  list-style: none;
+  li {
+   float: left;
+   margin-left: 12px;
+   }
+  }
 }
