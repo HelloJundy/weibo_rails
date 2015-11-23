@@ -5,7 +5,7 @@ class UserTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup            #setup方法會在測試方法运行前执行
-    @user = User.new(name:"hello", email: "hello@123.com");
+    @user = User.new(name:"hello", email: "hello@123.com", password: "foobar", password_confirmation:"foobar");
   end
   
   test "should be valid" do
@@ -46,5 +46,17 @@ class UserTest < ActiveSupport::TestCase
       @user.email = valid_address
       assert_not @user.valid?, "#{valid_address.inspect} should be invalid"
     end
+  end
+  
+  test "email addresses should be unique" do
+    dup_user =  @user.dup
+    @user.save
+    dup_user.email= @user.email.upcase
+    assert_not dup_user.valid?
+  end
+  
+  test "password should have a minimum length" do
+    @user.password = @user.password_confirmation = "a" * 5;
+    assert_not @user.valid?
   end
 end
