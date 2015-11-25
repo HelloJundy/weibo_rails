@@ -49,7 +49,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "email addresses should be saved as low-case" do
-    valid_address = "hellojundy@163.com"
+    valid_address = "hellojund@163.com"
     @user.email = valid_address.upcase
     @user.save
     assert_equal valid_address.downcase, @user.reload.email
