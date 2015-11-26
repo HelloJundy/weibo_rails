@@ -13,4 +13,21 @@ class ActiveSupport::TestCase
   def is_log_in?
     !session[:user_id].nil?
   end
+    
+  #等入測試用戶
+  def log_in_as(user, options = {})
+    password =  options[:password]    || 'password'
+    remember_me =  options[:remember_me] || '1'
+    if integration_test?
+      post login_path ,session: { email: user.email,
+                                  password: password,
+                                  remember_me: remember_me}
+    elsif
+      session[:user_id] = user.id
+    end
+  end
+  
+  def integration_test?
+    defined?(post_via_redirect)   #判斷是不是集成測試
+  end
 end

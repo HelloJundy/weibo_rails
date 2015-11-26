@@ -27,10 +27,20 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     delete logout_path
     assert_not is_log_in?
     assert_redirected_to root_url
+    delete logout_path
     follow_redirect!
     assert_select "a[href=?]", login_path
     assert_select "a[href=?]", user_path(@user), count:0
     assert_select "a[href=?]", logout_path, count:0
   end
   
+  test 'login with remember' do
+    log_in_as(@user)
+    assert_not_nil cookies['remember_token']
+  end
+  
+  test 'login without remember' do
+    log_in_as(@user, remember_me: '0')
+    assert_nil cookies['remember_token']   #测试中cookies不能使用符号键，所以在这里使用字符串关键字
+  end
 end
