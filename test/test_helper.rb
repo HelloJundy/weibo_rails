@@ -14,9 +14,9 @@ class ActiveSupport::TestCase
     !session[:user_id].nil?
   end
     
-  #等入測試用戶
+  #登入測試用戶
   def log_in_as(user, options = {})
-    password =  options[:password]    || 'password'
+    password =  options[:password] || 'password'
     remember_me =  options[:remember_me] || '1'
     if integration_test?
       post login_path ,session: { email: user.email,
