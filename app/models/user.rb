@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
  
-  attr_accessor :remember_token
-  
-  before_save {self.email.downcase!}
+  attr_accessor :remember_token, :activation_token
+  before_create :create_activation_digest
+  before_save :email_downcase
   
   validates :name, presence: true, length:{maximum:50}
   
@@ -50,4 +50,15 @@ class User < ActiveRecord::Base
       SecureRandom.urlsafe_base64
     end
   end
+  
+  private
+  
+    def email_downcase
+      self.email.downcase!
+    end
+    
+    def create_activation_digest
+      self.activation_token = User.new_token
+      self.activation_digets = User.digest(activation_token)
+    end
 end
