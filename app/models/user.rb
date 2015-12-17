@@ -57,6 +57,11 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver_now
   end
   
+  #如果密碼重設超時則返回true
+  def password_reset_expired
+    reset_sent_at < 2.hours.ago
+  end
+  
   class << self
     # 返回指定字符串的哈希摘要
     def digest(string)
