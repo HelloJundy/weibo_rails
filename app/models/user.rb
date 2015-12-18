@@ -65,6 +65,12 @@ class User < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
   
+  # 实现动态流原型
+  def feed
+    Micropost.where("user_id = ?",id)
+    #Microposts
+  end
+  
   class << self
     # 返回指定字符串的哈希摘要
     def digest(string)
