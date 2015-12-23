@@ -1,5 +1,5 @@
-source 'https://ruby.taobao.org'
-
+#source 'https://ruby.taobao.org'
+source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
@@ -35,6 +35,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'faker', '1.4.2'
 gem 'will_paginate', '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
+
+# pic 处理图片上传
+gem 'carrierwave', '0.10.0'
+# 用于调整图片尺寸
+gem 'mini_magick', '3.8.0'
+gem 'fog', '1.23.0'
+gem 'net-ssh'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'sqlite3' 
