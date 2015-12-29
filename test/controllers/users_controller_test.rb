@@ -58,7 +58,7 @@ class UsersControllerTest < ActionController::TestCase
     log_in_as(@other_user)
     assert_not @other_user.admin?
     patch :update , id: @other_user, user:{ password: "123456",
-                                            password: "123456",
+                                            password_confirmation: "123456",
                                             admin: true
                                           }
     assert_not @other_user.reload.admin?
