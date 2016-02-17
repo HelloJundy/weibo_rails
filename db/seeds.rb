@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create!( name: "admin",
-              email: "admin@uss.com",
+              email: "admin@user.com",
               password: "123456",
               password_confirmation: "123456",
               admin: true,
@@ -28,6 +28,7 @@ User.create!( name: "admin",
                 )
 end
 
+#order 方法可以按照創建時間排列， take查找6個用戶
 users = User.order(:created_at).take(6)
 
 50.times do
@@ -36,3 +37,10 @@ users = User.order(:created_at).take(6)
     user.microposts.create!(content:content)
   end
 end
+
+users = User.all
+user = User.first
+following = users[2..50]
+followers = users[3..40]
+following.each {|followed| user.follow(followed)}
+followers.each {|follower| follower.follow(user)}
